@@ -1,33 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-validate-token',
   templateUrl: './validate-token.component.html',
   styleUrls: ['./validate-token.component.css']
 })
-export class ValidateTokenComponent implements OnInit {
+export class ValidateTokenComponent {
 
-  constructor(){
-
-    
-
-    console.log("Estoy en componente validate-token")
-   // alert("");
-    $(document).ready(
-   //Extraer el toke opaco
-     console.log("Estoy en componente validate token, recupero token opaco");
-			var idSessionCDPYNE = "vakor que mando por ejemplo el toke opaco";             
-			opener.callParent(idSessionCDPYNE);   
-    
-    );
-  
+  constructor(private route: ActivatedRoute) {
+    //Extraer el toke opaco de query stringy como respuesta en la redirecccion de IDPS
+    const tokenOpaco: string = this.route.snapshot.queryParamMap.get('ot');
+    console.log(tokenOpaco);
+    opener.callParent(tokenOpaco);
   }
-
-
-  ngOnInit() {
-
-   
-  }
-
 }
